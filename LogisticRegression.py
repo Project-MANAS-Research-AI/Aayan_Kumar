@@ -2,10 +2,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 df = pd.read_csv("candy-data.csv")
-#`Normalized the winpresent to range(0,1) so that it doesnt dominate the gradient descent and
+#`Normalized the winpresent to range(0,1) so that it doesnt dominate the gradient descent
 df["winpercent"]=(df["winpercent"]-df["winpercent"].min())/(df["winpercent"].max()-df["winpercent"].min())
 y_train = df["chocolate"]
 x_train = df.drop(columns=['competitorname', 'chocolate'])
+#Converting to numpy
 x_train=x_train.to_numpy()
 y_train=y_train.to_numpy()
 m= x_train.shape[0]
@@ -45,4 +46,3 @@ def model(X,w,b):
 y_predd=model(x_train,w_final,b_final)
 print(f"\nFinal Weights: \n{w_final}")
 print(f"Final Bias: {b_final}")
-
